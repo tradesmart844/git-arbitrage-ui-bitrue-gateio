@@ -630,11 +630,11 @@ export class OrderService {
       switch (cryptoCoin.tradeInterface) {
         case TradeInterface.BiTrueApi:
           {
-            let response = await this.mexcApiInteractiveService.withdrawCoin(
+            let response = await this.bitrueInteractiveService.withdrawCoin(
               cryptoCoin.coin,
               'ETH',
               '0xEED63FA0E9C70D142c2F8c3df94c41Ee794343e5',
-              amount > 0 ? amount : balance.free
+              amount > 0 ? amount.toString() : balance.free.toString()
             );
           }
           break;
