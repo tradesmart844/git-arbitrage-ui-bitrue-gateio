@@ -1,0 +1,24 @@
+th {
+  min-width: 80px !important;
+  padding: 0.2rem !important;
+}
+
+td {
+  min-width: 80px !important;
+  padding-top: 0.2rem !important;
+  padding-bottom: 0.2rem !important;
+  padding-left: 0.2rem !important;
+  overflow: hidden;
+}
+
+.red {
+  color: white;
+  background-color: tomato;
+  font-weight: bold;
+}
+
+.green {
+  color: white;
+  background-color: green;
+  font-weight: bold;
+}

@@ -1,0 +1,56 @@
+<p-table>
+  <ng-template pTemplate="header">
+    <tr>
+      <th>
+        ({{ askTradeInterface }}-{{ askMarketDataContainer?.symbol?.name }}) /
+        ({{ bidMarketDataContainer?.symbol?.name }}-{{ bidTradeInterface }})
+      </th>
+    </tr>
+  </ng-template>
+</p-table>
+<br />
+<p-table
+  [value]="askMarketDepthInfos"
+  styleClass="p-datatable-gridlines"
+  responsiveLayout="scroll"
+  [scrollable]="true"
+  scrollHeight="300px"
+>
+  <ng-template pTemplate="header">
+    <tr>
+      <th>Price</th>
+      <th>Quantity</th>
+    </tr>
+  </ng-template>
+  <ng-template pTemplate="body" let-ask>
+    <tr>
+      <td>
+        {{ ask.price.toFixed(askMarketDataContainer?.symbol?.decimalPlace) }}
+      </td>
+      <td>{{ ask.quantity.toFixed(4) }}</td>
+    </tr>
+  </ng-template>
+</p-table>
+<br />
+<p-table
+  [value]="bidMarketDepthInfos"
+  styleClass="p-datatable-gridlines"
+  responsiveLayout="scroll"
+  [scrollable]="true"
+  scrollHeight="300px"
+>
+  <!-- <ng-template pTemplate="header">
+    <tr>
+      <th>Price</th>
+      <th>Quantity</th>
+    </tr>
+  </ng-template> -->
+  <ng-template pTemplate="body" let-bid>
+    <tr>
+      <td>
+        {{ bid.price.toFixed(bidMarketDataContainer?.symbol?.decimalPlace) }}
+      </td>
+      <td>{{ bid.quantity.toFixed(4) }}</td>
+    </tr>
+  </ng-template>
+</p-table>

@@ -1,0 +1,109 @@
+<p-table
+  [value]="totalCoinBalance"
+  styleClass="p-datatable-sm p-datatable-gridlines"
+  [scrollable]="true"
+  scrollHeight="200px"
+  [style]="{width: '100%'}"
+  [sortField]="'coin'"
+  [sortOrder]="1"
+>
+  <ng-template pTemplate="header">
+    <tr>
+      <th style="width: 40%" pSortableColumn="coin">Symbol <p-sortIcon field="coin"></p-sortIcon></th>
+      <th style="width: 60%" pSortableColumn="balance">Balance <p-sortIcon field="balance"></p-sortIcon></th>
+    </tr>
+  </ng-template>
+  <ng-template pTemplate="body" let-coin>
+    <tr>
+      <td style="cursor: pointer" (click)="showPlaceLimitDialog(coin.coin)">{{ coin.coin }}</td>
+      <td>{{ coin.balance | number:'1.0-8' }}</td>
+    </tr>
+  </ng-template>
+</p-table>
+
+<p-dialog 
+  [(visible)]="displayDialog" 
+  [modal]="true" 
+  [style]="{width: '50vw'}" 
+  [draggable]="false" 
+  [resizable]="false"
+  [closable]="true"
+  (onHide)="hideDialog()"
+  [header]="'Place Limit Order - ' + selectedCoin"
+>
+  <div class="dialog-content">
+    <div class="form-group">
+      <label for="tradeInterface">Trade Interface:</label>
+      <p-dropdown
+        id="tradeInterface"
+        [options]="tradeInterfaces"
+        [(ngModel)]="selectedTradeInterface"
+        optionLabel="label"
+        optionValue="value"
+        [showClear]="true"
+        placeholder="Select Trade Interface"
+      ></p-dropdown>
+    </div>
+
+    <div class="form-group">
+      <label for="segment">Segment:</label>
+      <p-dropdown
+        id="segment"
+        [options]="segments"
+        [(ngModel)]="selectedSegment"
+        optionLabel="label"
+        optionValue="value"
+        [showClear]="true"
+        placeholder="Select Segment"
+      ></p-dropdown>
+    </div>
+
+    <div class="form-group">
+      <label for="transactionType">Transaction Type:</label>
+      <p-dropdown
+        id="transactionType"
+        [options]="transactionTypes"
+        [(ngModel)]="selectedTransactionType"
+        optionLabel="label"
+        optionValue="value"
+        (onChange)="onTransactionTypeChange()"
+        placeholder="Select Transaction Type"
+      ></p-dropdown>
+    </div>
+
+    <div class="form-group">
+      <label for="quantity">Order Quantity:</label>
+      <p-inputNumber
+        id="quantity"
+        [(ngModel)]="orderQuantity"
+        [min]="0"
+        [showButtons]="true"
+        mode="decimal"
+        [minFractionDigits]="0"
+        [maxFractionDigits]="0"
+        [useGrouping]="false"
+      ></p-inputNumber>
+    </div>
+
+    <div class="form-group">
+      <label for="price">Order Price:</label>
+      <p-inputNumber
+        id="price"
+        [(ngModel)]="orderPrice"
+        [min]="0"
+        [showButtons]="true"
+        mode="decimal"
+        [minFractionDigits]="8"
+        [maxFractionDigits]="8"
+      ></p-inputNumber>
+    </div>
+
+    <div class="form-group button-container">
+      <p-button 
+        label="Place Order" 
+        (onClick)="placeOrder()"
+        styleClass="p-button-success"
+      ></p-button>
+    </div>
+  </div>
+</p-dialog>

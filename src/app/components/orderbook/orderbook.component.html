@@ -1,0 +1,64 @@
+<p-table
+  [value]="Array.from(orders.values())"
+  styleClass="p-datatable-gridlines"
+  responsiveLayout="scroll"
+  [scrollable]="true"
+  scrollHeight="100px"
+>
+  <ng-template pTemplate="header">
+    <tr>
+      <th style="min-width: 140px !important">Symbol</th>
+      <th style="min-width: 60px !important">SIDE</th>
+      <th>Price</th>
+      <th>Qty</th>
+      <th>Executed</th>
+      <th>PendQty</th>
+      <th>Value</th>
+      <th>Status</th>
+      <th>Time</th>
+      <th>OtheyQty</th>
+      <th style="min-width: 100px !important">Actions</th>
+    </tr>
+  </ng-template>
+  <ng-template pTemplate="body" let-order>
+    <tr>
+      <td style="min-width: 140px !important">{{TradeInterface[order.symbol.tradeInterface]}} - {{ order.symbol.name }}</td>
+      <td style="min-width: 60px !important">
+        {{ TransationType[order.transactionType] }}
+      </td>
+      <td>{{ order.price }}</td>
+      <td>{{ order.quantity }}</td>
+      <td>{{ order.filledQuantity }}</td>
+      <td>{{ order.quantity - order.filledQuantity | number:'1.0-3' }}</td>
+      <td>{{ (order.quantity - order.filledQuantity) * order.price | number:'1.0-2' }}</td>
+      <td>{{ OrderStatus[order.orderStatus] }}</td>
+      <td>{{ order.orderTime | date : "HH:mm:ss" }}</td>
+      <td>{{ order.otherQuantity }}</td>
+      <td style="min-width: 100px !important">
+        <span class="p-buttonset p-text-bold">
+          <button
+            pButton
+            type="button"
+            label="Cancel"
+            class="p-button-sm"
+            (click)="cancelOrder(order)"
+          ></button>
+          <button
+            pButton
+            type="button"
+            label="ExtStep"
+            class="p-button-sm p-button-warning"
+            (click)="existAtStep(order)"
+          ></button>
+          <button
+            pButton
+            type="button"
+            label="ExtBest"
+            class="p-button-sm p-button-warning"
+            (click)="exitAtBest(order)"
+          ></button>
+        </span>
+      </td>
+    </tr>
+  </ng-template>
+</p-table>

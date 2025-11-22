@@ -1,0 +1,14 @@
+/* Auto order toggle button styles */
+:host ::ng-deep .p-button.p-button-success {
+    background-color: #22c55e;
+    border-color: #22c55e;
+}
+
+:host ::ng-deep .p-button.p-button-secondary {
+    background-color: #64748b;
+    border-color: #64748b;
+}
+
+:host ::ng-deep .p-buttonset .p-button {
+    margin-right: 2px;
+}

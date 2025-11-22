@@ -1,0 +1,8 @@
+<div>
+  <h2>Withdraw Coin</h2>
+  <p>Selected Coin: {{ TradeInterface[tradeInterface] }} - {{ symbol }}</p>
+  <label for="amount">Amount:</label>
+  <input type="number" id="amount" [(ngModel)]="amount" />
+  <button (click)="withdrawCoin()">Submit</button>
+  <button (click)="close()">Close</button>
+</div>

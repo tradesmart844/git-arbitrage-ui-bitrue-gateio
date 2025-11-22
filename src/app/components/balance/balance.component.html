@@ -1,0 +1,27 @@
+<p-table
+  [value]="balances"
+  styleClass="p-datatable-gridlines"
+  responsiveLayout="scroll"
+  [scrollable]="true"
+  scrollHeight="200px"
+>
+  <ng-template pTemplate="header">
+    <tr>
+      <th>{{ TradeInterface[tradeInterface] }}-Symbol</th>
+      <th>Free</th>
+      <th>Locked</th>
+    </tr>
+  </ng-template>
+  <ng-template pTemplate="body" let-balance>
+    <tr>
+      <td
+        (click)="withdrawCoin(balance)"
+        class="{{ getWithdrawStatus(balance) ? '' : 'red' }}"
+      >
+        {{ balance.cryptoCoin.coin }}
+      </td>
+      <td>{{ balance.free | number }}</td>
+      <td>{{ balance.locked | number }}</td>
+    </tr>
+  </ng-template>
+</p-table>

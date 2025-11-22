@@ -1,0 +1,32 @@
+.dialog-content {
+    padding: 1rem;
+}
+
+.form-group {
+    margin-bottom: 1rem;
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 0.5rem;
+    font-weight: 500;
+}
+
+:host ::ng-deep .p-dropdown {
+    width: 100%;
+}
+
+:host ::ng-deep .p-inputnumber {
+    width: 100%;
+}
+
+:host ::ng-deep .p-inputnumber-input {
+    width: 100%;
+}
+
+.button-container {
+    display: flex;
+    justify-content: flex-end;
+    margin-top: 2rem;
+    margin-bottom: 0;
+}

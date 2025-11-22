@@ -1,0 +1,11 @@
+th {
+  min-width: 100px;
+  font-size: 1.2rem;
+  padding-top: 0.2rem !important;
+  padding-bottom: 0.2rem !important;
+}
+
+td {
+  padding-top: 0.2rem !important;
+  padding-bottom: 0.2rem !important;
+}

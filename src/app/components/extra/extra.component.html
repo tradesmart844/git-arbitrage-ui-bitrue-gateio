@@ -1,0 +1,40 @@
+<span class="p-buttonset p-text-bold">
+  <!-- <button
+    pButton
+    type="button"
+    label="WITHDRAW"
+    class="p-button-sm"
+    (click)="withdraw()"
+  ></button> -->
+  <button
+    pButton
+    type="button"
+    label="REFRESH"
+    class="p-button-sm"
+    (click)="refreshBalances()"
+  ></button>
+  <button
+    pButton
+    type="button"
+    label="LOCKXRP"
+    class="p-button-sm"
+    (click)="lockXRP()"
+  ></button>
+  <button
+    pButton
+    type="button"
+    [label]="autoOrderEnabled ? 'AUTO ON (' + processingPairsCount + ')' : 'AUTO OFF'"
+    class="p-button-sm"
+    [ngClass]="{'p-button-success': autoOrderEnabled, 'p-button-secondary': !autoOrderEnabled}"
+    (click)="toggleAutoOrderManagement()"
+  ></button>
+  <button
+    pButton
+    type="button"
+    label="CLEAR"
+    class="p-button-sm p-button-danger"
+    [disabled]="processingPairsCount === 0"
+    (click)="clearProcessingPairs()"
+  ></button>
+  {{ TradeInterface[tradeInterface] }}
+</span>

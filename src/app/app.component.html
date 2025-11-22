@@ -1,0 +1,62 @@
+<div class="modal">
+  <app-withdraw-coin
+    *ngIf="isOpen"
+    [balance]="withdrawCoinModalService.getModalData()"
+  ></app-withdraw-coin>
+</div>
+<div class="card">
+  <p-splitter
+    [style]="{ height: '700px' }"
+    [panelSizes]="[20, 80]"
+    [minSizes]="[10, 0]"
+    styleClass="p-mb-5"
+  >
+    <ng-template pTemplate>
+      <div class="p-col p-d-flex p-ai-center p-jc-center">
+        <app-total-coin-balance></app-total-coin-balance>
+        <app-balance [tradeInterface]="tradeInterface1"></app-balance>
+        <app-balance [tradeInterface]="tradeInterface2"></app-balance>
+        <!-- <app-market-depth></app-market-depth> -->
+      </div>
+    </ng-template>
+    <ng-template pTemplate>
+      <p-splitter layout="vertical" [panelSizes]="[5, 95]">
+        <ng-template pTemplate>
+          <p-splitter [panelSizes]="[50, 50]">
+            <ng-template pTemplate>
+              <app-extra [tradeInterface]="tradeInterface1"></app-extra>
+            </ng-template>
+            <ng-template pTemplate>
+              <app-extra [tradeInterface]="tradeInterface2"></app-extra>
+            </ng-template>
+          </p-splitter>
+        </ng-template>
+        <ng-template pTemplate>
+          <p-splitter layout="vertical" [panelSizes]="[20, 80]">
+            <ng-template pTemplate>
+              <app-arbitrage-book></app-arbitrage-book>
+              <!-- <p-tabView>
+                <p-tabPanel header="BTR|SOLO">
+                  <app-arbitrage-book></app-arbitrage-book>
+                </p-tabPanel>
+                <p-tabPanel header="BTR|WRX">
+                  <app-arbitrage-book-btr-wrx></app-arbitrage-book-btr-wrx>
+                </p-tabPanel>
+              </p-tabView> -->
+            </ng-template>
+            <ng-template pTemplate>
+              <p-splitter layout="vertical" [panelSizes]="[20, 80]">
+                <ng-template pTemplate>
+                  <app-orderbook></app-orderbook>
+                </ng-template>
+                <ng-template pTemplate>
+                  <app-arbitrage-current></app-arbitrage-current>
+                </ng-template>
+              </p-splitter>
+            </ng-template>
+          </p-splitter>
+        </ng-template>
+      </p-splitter>
+    </ng-template>
+  </p-splitter>
+</div>

@@ -1,0 +1,143 @@
+<p-table
+  [value]="arbitragePairs"
+  styleClass="p-datatable-gridlines"
+  [scrollable]="true"
+>
+  <ng-template pTemplate="header">
+    <tr>
+      <th style="min-width: 150px">Symbol</th>
+      <th style="min-width: 100px">Interface</th>
+      <th style="min-width: 100px">SellPrice</th>
+      <th style="min-width: 100px">BuyPrice</th>
+      <th style="min-width: 100px">Profit</th>
+      <th style="min-width: 150px">Actions</th>
+      <th>BestSell</th>
+      <th>ProfitSell</th>
+      <th>SellQty</th>
+      <th>BuyQty</th>
+      <th>CalcSellValue</th>
+    </tr>
+  </ng-template>
+  <ng-template pTemplate="body" let-arbitragePair>
+    <tr>
+      <td
+        style="
+          font-size: 1rem;
+          font-weight: bold;
+          padding-left: 5px;
+          margin-left: 0;
+          min-width: 150px;
+        "
+        (click)="onSelect(arbitragePair)"
+      >
+        {{
+          getBaseSymbol(arbitragePair.sellMarketDataContainer.symbol).substring(
+            0,
+            4
+          )
+        }}{{
+          getQuoteSymbol(
+            arbitragePair.sellMarketDataContainer.symbol
+          ).substring(0, 4)
+        }}/{{
+          getBaseSymbol(arbitragePair.buyMarketDataContainer.symbol).substring(
+            0,
+            4
+          )
+        }}{{
+          getQuoteSymbol(arbitragePair.buyMarketDataContainer.symbol).substring(
+            0,
+            4
+          )
+        }}
+      </td>
+      <td style="min-width: 100px">
+        {{
+          TradeInterface[
+            arbitragePair.sellMarketDataContainer.symbol.tradeInterface
+          ]
+        }}
+      </td>
+      <td style="min-width: 100px">
+        {{
+          arbitragePair.sellMarketPrice.toFixed(
+            arbitragePair.sellMarketDataContainer.symbol.decimalPlace
+          )
+        }}
+      </td>
+      <td style="min-width: 100px">
+        {{
+          arbitragePair.buyMarketPrice.toFixed(
+            arbitragePair.buyMarketDataContainer.symbol.decimalPlace
+          )
+        }}
+      </td>
+      <td
+        class="profit-cell {{
+          arbitragePair.profitPerAtMarketPrice < arbitragePair.targetPer
+            ? ''
+            : 'green'
+        }}"
+      >
+        {{ arbitragePair.profitPerAtMarketPrice.toFixed(4) }}
+        <span class="batch-count">
+          {{ getAvailableBatches(arbitragePair) }}
+        </span>
+        <span class="sell-batch-count">
+          {{ getAvailableSellBatches(arbitragePair) }}
+        </span>
+      </td>
+      <td style="min-width: 150px">
+        <span class="p-buttonset p-text-bold">
+          <button
+            pButton
+            type="button"
+            label="MKT"
+            class="p-button-sm {{ getAvailableBatches(arbitragePair) === 0 || getAvailableSellBatches(arbitragePair) === 0 ? 'p-button-danger' : '' }}"
+            (click)="placeMarketOrder(arbitragePair)"
+          ></button>
+          <!-- <button
+            pButton
+            type="button"
+            label="FM"
+            class="p-button-sm"
+            (click)="placeFullMarketOrder(arbitragePair)"
+          ></button> -->
+          <button
+            pButton
+            type="button"
+            label="LMT"
+            class="p-button-sm"
+            (click)="placeLimitOrder(arbitragePair)"
+          ></button>
+          <!-- <button
+            pButton
+            type="button"
+          label="FLMT"
+            class="p-button-sm"
+            (click)="placeFullLimitOrder(arbitragePair)"
+          ></button> -->
+        </span>
+      </td>
+      <td>
+        {{
+          arbitragePair.bestSellMarketDepthInfo.price.toFixed(
+            arbitragePair.sellMarketDataContainer.symbol.decimalPlace
+          )
+        }}
+      </td>
+      <td
+        class="{{
+          arbitragePair.profitPerAtBestPrice < arbitragePair.targetPer
+            ? ''
+            : 'green'
+        }}"
+      >
+        {{ arbitragePair.profitPerAtBestPrice.toFixed(4) }}
+      </td>
+      <td>{{ arbitragePair.sellQuantity }}</td>
+      <td>{{ arbitragePair.buyQuantity }}</td>
+      <td>{{ arbitragePair.calculateSellQuantityValue }}</td>
+    </tr>
+  </ng-template>
+</p-table>
