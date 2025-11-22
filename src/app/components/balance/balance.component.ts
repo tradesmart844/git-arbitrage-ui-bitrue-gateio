@@ -34,7 +34,7 @@ export class BalanceComponent implements OnInit, OnDestroy {
   totalCoinBalance: { coin: string; balance: number }[] = [];
 
   preferedSymbols: string[] = [
-    //'XRP',
+    'XRP',
     'USDT',
     //'SOLO',
     //'ELS',
