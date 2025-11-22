@@ -76,21 +76,21 @@ export class BitrueInteractiveService implements IInteractiveEngine {
   marketDataSockets: Map<string, WebSocket> = new Map<string, WebSocket>();
   appSubscription: Subscription | undefined;
   symbols: string[] = [
-    'XRPUSDT',
-    'SOLOUSDT',
+    //'XRPUSDT',
+    //'SOLOUSDT',
     // 'ELSUSDT',
     // 'ELSXRP',
     // 'RPRUSDT',
-    'COREUMUSDT',
+    //'COREUMUSDT',
     // 'XCOREUSDT',
     'QNTUSDT',
     // 'QNTXRP',
-    'XDCUSDT',
+    //'XDCUSDT',
     //'XDCXRP',
     //'XLMUSDT',
     // 'XLMXRP',
     //'EWTUSDT',
-    'HBARUSDT',
+    //'HBARUSDT',
   ];
 
   constructor(

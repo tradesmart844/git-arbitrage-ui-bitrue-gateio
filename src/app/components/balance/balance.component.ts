@@ -34,17 +34,17 @@ export class BalanceComponent implements OnInit, OnDestroy {
   totalCoinBalance: { coin: string; balance: number }[] = [];
 
   preferedSymbols: string[] = [
-    'XRP',
+    //'XRP',
     'USDT',
-    'SOLO',
+    //'SOLO',
     //'ELS',
     //'RPR',
-    'COREUM',
+    //'COREUM',
     'QNT',
     //'XLM',
-    'XDC',
-    'EWT',
-    'HBAR',
+    //'XDC',
+    //'EWT',
+    //'HBAR',
   ];
 
   constructor(
@@ -52,7 +52,7 @@ export class BalanceComponent implements OnInit, OnDestroy {
     private appService: AppService,
     private withdrawCoinModalService: WithdraCoinModalService,
     private symbolManagerService: SymbolManagerService
-  ) {}
+  ) { }
 
   ngOnDestroy(): void {
     if (this.orderSubscription) {

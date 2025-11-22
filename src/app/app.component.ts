@@ -9,6 +9,7 @@ import { MexcApiInteractiveService } from './services/mexc-api-interactive.servi
 import { WithdraCoinModalService } from './services/withdra-coin-modal.service';
 import { Subscription } from 'rxjs';
 import { GateIOApiInteractiveService } from './services/gateio-api-interactive.service';
+import { BitrueInteractiveService } from './services/bitrue-interactive.service';
 
 @Component({
   selector: 'app-root',
@@ -18,7 +19,7 @@ import { GateIOApiInteractiveService } from './services/gateio-api-interactive.s
 })
 export class AppComponent implements OnInit, OnDestroy {
   title = 'Arbitrage';
-  tradeInterface1: TradeInterface = TradeInterface.MEXCApi;
+  tradeInterface1: TradeInterface = TradeInterface.BiTrueApi;
   tradeInterface2: TradeInterface = TradeInterface.GateIOApi;
   isOpen = false; // Track modal state locally
   withdrawCoinModalSubscription: Subscription | undefined;
@@ -28,7 +29,7 @@ export class AppComponent implements OnInit, OnDestroy {
     private appService: AppService,
     private orderService: OrderService,
     private symbolService: SymbolManagerService,
-    private mexcApiInteractiveService: MexcApiInteractiveService,
+    private bitrueInteractiveService: BitrueInteractiveService,
     private gateioApiInteractiveService: GateIOApiInteractiveService,
     public withdrawCoinModalService: WithdraCoinModalService
   ) {
@@ -50,8 +51,8 @@ export class AppComponent implements OnInit, OnDestroy {
     await this.marketDataService.init();
     await this.orderService.init();
     //await this.mexcApiInteractiveService.init();
-    //await this.bitrueInteractiveService.init();
-    //await this.gateioApiInteractiveService.init();
+    await this.bitrueInteractiveService.init();
+    await this.gateioApiInteractiveService.init();
     this.appService.onAppReady();
   }
 }

@@ -61,53 +61,53 @@ export class ArbitrageService {
   }
 
   async onAppReady(message: string) {
-    let xdcUSDTGateIO = this.symbolManagerService.getSymbol(
-      TradeInterface.GateIOApi,
-      Segment.GateIO,
-      'XDCUSDT'
-    );
+    // let xdcUSDTGateIO = this.symbolManagerService.getSymbol(
+    //   TradeInterface.GateIOApi,
+    //   Segment.GateIO,
+    //   'XDCUSDT'
+    // );
 
-    let xdcUSDTMexc = this.symbolManagerService.getSymbol(
-      TradeInterface.MEXCApi,
-      Segment.MEXC,
-      'XDCUSDT'
-    );
+    // let xdcUSDTMexc = this.symbolManagerService.getSymbol(
+    //   TradeInterface.MEXCApi,
+    //   Segment.MEXC,
+    //   'XDCUSDT'
+    // );
 
-    let soloUSDTGateIO = this.symbolManagerService.getSymbol(
-      TradeInterface.GateIOApi,
-      Segment.GateIO,
-      'SOLOUSDT'
-    );
+    // let soloUSDTGateIO = this.symbolManagerService.getSymbol(
+    //   TradeInterface.GateIOApi,
+    //   Segment.GateIO,
+    //   'SOLOUSDT'
+    // );
 
-    let soloUSDTMexc = this.symbolManagerService.getSymbol(
-      TradeInterface.MEXCApi,
-      Segment.MEXC,
-      'SOLOUSDT'
-    );
+    // let soloUSDTMexc = this.symbolManagerService.getSymbol(
+    //   TradeInterface.MEXCApi,
+    //   Segment.MEXC,
+    //   'SOLOUSDT'
+    // );
 
-    let coreumUSDTGateIO = this.symbolManagerService.getSymbol(
-      TradeInterface.GateIOApi,
-      Segment.GateIO,
-      'COREUMUSDT'
-    );
+    // let coreumUSDTGateIO = this.symbolManagerService.getSymbol(
+    //   TradeInterface.GateIOApi,
+    //   Segment.GateIO,
+    //   'COREUMUSDT'
+    // );
 
-    let coreumUSDTMexc = this.symbolManagerService.getSymbol(
-      TradeInterface.MEXCApi,
-      Segment.MEXC,
-      'COREUMUSDT'
-    );
+    // let coreumUSDTMexc = this.symbolManagerService.getSymbol(
+    //   TradeInterface.MEXCApi,
+    //   Segment.MEXC,
+    //   'COREUMUSDT'
+    // );
 
-    let ewtUSDTGateIO = this.symbolManagerService.getSymbol(
-      TradeInterface.GateIOApi,
-      Segment.GateIO,
-      'EWTUSDT'
-    );
+    // let ewtUSDTGateIO = this.symbolManagerService.getSymbol(
+    //   TradeInterface.GateIOApi,
+    //   Segment.GateIO,
+    //   'EWTUSDT'
+    // );
 
-    let ewtUSDTMexc = this.symbolManagerService.getSymbol(
-      TradeInterface.MEXCApi,
-      Segment.MEXC,
-      'EWTUSDT'
-    );
+    // let ewtUSDTMexc = this.symbolManagerService.getSymbol(
+    //   TradeInterface.MEXCApi,
+    //   Segment.MEXC,
+    //   'EWTUSDT'
+    // );
 
     let qntUSDTGateIO = this.symbolManagerService.getSymbol(
       TradeInterface.GateIOApi,
@@ -115,224 +115,224 @@ export class ArbitrageService {
       'QNTUSDT'
     );
 
-    let qntUSDTMexc = this.symbolManagerService.getSymbol(
-      TradeInterface.MEXCApi,
-      Segment.MEXC,
+    let qntUSDTBitrue = this.symbolManagerService.getSymbol(
+      TradeInterface.BiTrueApi,
+      Segment.BiTrue,
       'QNTUSDT'
     );
 
-    let xrpUSDTGateIO = this.symbolManagerService.getSymbol(
-      TradeInterface.GateIOApi,
-      Segment.GateIO,
-      'XRPUSDT'
-    );
+    // let xrpUSDTGateIO = this.symbolManagerService.getSymbol(
+    //   TradeInterface.GateIOApi,
+    //   Segment.GateIO,
+    //   'XRPUSDT'
+    // );
 
-    let xrpUSDTMexc = this.symbolManagerService.getSymbol(
-      TradeInterface.MEXCApi,
-      Segment.MEXC,
-      'XRPUSDT'
-    );
+    // let xrpUSDTMexc = this.symbolManagerService.getSymbol(
+    //   TradeInterface.MEXCApi,
+    //   Segment.MEXC,
+    //   'XRPUSDT'
+    // );
 
-    let hbarUSDTGateIO = this.symbolManagerService.getSymbol(
-      TradeInterface.GateIOApi,
-      Segment.GateIO,
-      'HBARUSDT'
-    );
+    // let hbarUSDTGateIO = this.symbolManagerService.getSymbol(
+    //   TradeInterface.GateIOApi,
+    //   Segment.GateIO,
+    //   'HBARUSDT'
+    // );
 
-    let hbarUSDTMexc = this.symbolManagerService.getSymbol(
-      TradeInterface.MEXCApi,
-      Segment.MEXC,
-      'HBARUSDT'
-    );
+    // let hbarUSDTMexc = this.symbolManagerService.getSymbol(
+    //   TradeInterface.MEXCApi,
+    //   Segment.MEXC,
+    //   'HBARUSDT'
+    // );
 
-    let xdcAutoOrder = true;
-    let soloAutoOrder = true;
-    let coreumAutoOrder = true;
-    let ewtAutoOrder = false;
-    let qntAutoOrder = true;
-    let xrpAutoOrder = false;
-    let hbarAutoOrder = true;
+    // let xdcAutoOrder = true;
+    // let soloAutoOrder = true;
+    // let coreumAutoOrder = true;
+    // let ewtAutoOrder = false;
+    let qntAutoOrder = false;
+    // let xrpAutoOrder = false;
+    // let hbarAutoOrder = true;
 
-    if (xdcUSDTGateIO && xdcUSDTMexc) {
-      let arbitragePair = new ArbitragePair(
-        MarketDataContainer.empty(xdcUSDTGateIO),
-        MarketDataContainer.empty(xdcUSDTMexc),
-        undefined,
-        5000,
-        4000,
-        0,
-        0,
-        true,
-        false,
-        3,
-        200,
-        false,
-        xdcAutoOrder
-      );
+    // if (xdcUSDTGateIO && xdcUSDTMexc) {
+    //   let arbitragePair = new ArbitragePair(
+    //     MarketDataContainer.empty(xdcUSDTGateIO),
+    //     MarketDataContainer.empty(xdcUSDTMexc),
+    //     undefined,
+    //     5000,
+    //     4000,
+    //     0,
+    //     0,
+    //     true,
+    //     false,
+    //     3,
+    //     200,
+    //     false,
+    //     xdcAutoOrder
+    //   );
 
-      arbitragePair.targetAlertAtMarket = 0.5;
+    //   arbitragePair.targetAlertAtMarket = 0.5;
 
-      this.arbitragePairs.push(arbitragePair);
-    }
+    //   this.arbitragePairs.push(arbitragePair);
+    // }
 
-    if (xdcUSDTGateIO && xdcUSDTMexc) {
-      let arbitragePair = new ArbitragePair(
-        MarketDataContainer.empty(xdcUSDTMexc),
-        MarketDataContainer.empty(xdcUSDTGateIO),
-        undefined,
-        5000,
-        4000,
-        0,
-        0,
-        true,
-        false,
-        4,
-        200,
-        false,
-        xdcAutoOrder
-      );
+    // if (xdcUSDTGateIO && xdcUSDTMexc) {
+    //   let arbitragePair = new ArbitragePair(
+    //     MarketDataContainer.empty(xdcUSDTMexc),
+    //     MarketDataContainer.empty(xdcUSDTGateIO),
+    //     undefined,
+    //     5000,
+    //     4000,
+    //     0,
+    //     0,
+    //     true,
+    //     false,
+    //     4,
+    //     200,
+    //     false,
+    //     xdcAutoOrder
+    //   );
 
-      arbitragePair.targetAlertAtMarket = 0.5
+    //   arbitragePair.targetAlertAtMarket = 0.5
 
-      this.arbitragePairs.push(arbitragePair);
-    }
+    //   this.arbitragePairs.push(arbitragePair);
+    // }
 
-    if (soloUSDTGateIO && soloUSDTMexc) {
-      let arbitragePair = new ArbitragePair(
-        MarketDataContainer.empty(soloUSDTGateIO),
-        MarketDataContainer.empty(soloUSDTMexc),
-        undefined,
-        500,
-        1000,
-        0,
-        0,
-        true,
-        false,
-        2,
-        200,
-        false,
-        soloAutoOrder
-      );
+    // if (soloUSDTGateIO && soloUSDTMexc) {
+    //   let arbitragePair = new ArbitragePair(
+    //     MarketDataContainer.empty(soloUSDTGateIO),
+    //     MarketDataContainer.empty(soloUSDTMexc),
+    //     undefined,
+    //     500,
+    //     1000,
+    //     0,
+    //     0,
+    //     true,
+    //     false,
+    //     2,
+    //     200,
+    //     false,
+    //     soloAutoOrder
+    //   );
 
-      arbitragePair.targetAlertAtMarket = 0.5;
+    //   arbitragePair.targetAlertAtMarket = 0.5;
 
-      this.arbitragePairs.push(arbitragePair);
-    }
+    //   this.arbitragePairs.push(arbitragePair);
+    // }
 
-    if (soloUSDTGateIO && soloUSDTMexc) {
-      let arbitragePair = new ArbitragePair(
-        MarketDataContainer.empty(soloUSDTMexc),
-        MarketDataContainer.empty(soloUSDTGateIO),
-        undefined,
-        500,
-        1000,
-        0,
-        0,
-        true,
-        false,
-        2,
-        200,
-        false,
-        soloAutoOrder
-      );
+    // if (soloUSDTGateIO && soloUSDTMexc) {
+    //   let arbitragePair = new ArbitragePair(
+    //     MarketDataContainer.empty(soloUSDTMexc),
+    //     MarketDataContainer.empty(soloUSDTGateIO),
+    //     undefined,
+    //     500,
+    //     1000,
+    //     0,
+    //     0,
+    //     true,
+    //     false,
+    //     2,
+    //     200,
+    //     false,
+    //     soloAutoOrder
+    //   );
 
-      arbitragePair.targetAlertAtMarket = 0.5;
+    //   arbitragePair.targetAlertAtMarket = 0.5;
 
-      this.arbitragePairs.push(arbitragePair);
-    }
+    //   this.arbitragePairs.push(arbitragePair);
+    // }
 
-    if (coreumUSDTGateIO && coreumUSDTMexc) {
-      let arbitragePair = new ArbitragePair(
-        MarketDataContainer.empty(coreumUSDTGateIO),
-        MarketDataContainer.empty(coreumUSDTMexc),
-        undefined,
-        2258,
-        3000,
-        0,
-        0,
-        true,
-        false,
-        3,
-        150,
-        false,
-        coreumAutoOrder
-      );
+    // if (coreumUSDTGateIO && coreumUSDTMexc) {
+    //   let arbitragePair = new ArbitragePair(
+    //     MarketDataContainer.empty(coreumUSDTGateIO),
+    //     MarketDataContainer.empty(coreumUSDTMexc),
+    //     undefined,
+    //     2258,
+    //     3000,
+    //     0,
+    //     0,
+    //     true,
+    //     false,
+    //     3,
+    //     150,
+    //     false,
+    //     coreumAutoOrder
+    //   );
 
-      arbitragePair.targetAlertAtMarket = 0.5;
+    //   arbitragePair.targetAlertAtMarket = 0.5;
 
-      this.arbitragePairs.push(arbitragePair);
-    }
+    //   this.arbitragePairs.push(arbitragePair);
+    // }
 
-    if (coreumUSDTGateIO && coreumUSDTMexc) {
-      let arbitragePair = new ArbitragePair(
-        MarketDataContainer.empty(coreumUSDTMexc),
-        MarketDataContainer.empty(coreumUSDTGateIO),
-        undefined,
-        2258,
-        3000,
-        0,
-        0,
-        true,
-        false,
-        5,
-        150,
-        false,
-        coreumAutoOrder
-      );
+    // if (coreumUSDTGateIO && coreumUSDTMexc) {
+    //   let arbitragePair = new ArbitragePair(
+    //     MarketDataContainer.empty(coreumUSDTMexc),
+    //     MarketDataContainer.empty(coreumUSDTGateIO),
+    //     undefined,
+    //     2258,
+    //     3000,
+    //     0,
+    //     0,
+    //     true,
+    //     false,
+    //     5,
+    //     150,
+    //     false,
+    //     coreumAutoOrder
+    //   );
 
-      arbitragePair.targetAlertAtMarket = 0.5;
+    //   arbitragePair.targetAlertAtMarket = 0.5;
 
-      this.arbitragePairs.push(arbitragePair);
-    }
+    //   this.arbitragePairs.push(arbitragePair);
+    // }
 
-    if (ewtUSDTGateIO && ewtUSDTMexc) {
-      let arbitragePair = new ArbitragePair(
-        MarketDataContainer.empty(ewtUSDTGateIO),
-        MarketDataContainer.empty(ewtUSDTMexc),
-        undefined,
-        100,
-        200,
-        0,
-        0,
-        false,
-        false,
-        0.2,
-        200,
-        false,
-        ewtAutoOrder
-      );
+    // if (ewtUSDTGateIO && ewtUSDTMexc) {
+    //   let arbitragePair = new ArbitragePair(
+    //     MarketDataContainer.empty(ewtUSDTGateIO),
+    //     MarketDataContainer.empty(ewtUSDTMexc),
+    //     undefined,
+    //     100,
+    //     200,
+    //     0,
+    //     0,
+    //     false,
+    //     false,
+    //     0.2,
+    //     200,
+    //     false,
+    //     ewtAutoOrder
+    //   );
 
-      arbitragePair.targetAlertAtMarket = 0.6;
+    //   arbitragePair.targetAlertAtMarket = 0.6;
 
-      this.arbitragePairs.push(arbitragePair);
-    }
+    //   this.arbitragePairs.push(arbitragePair);
+    // }
 
-    if (ewtUSDTGateIO && ewtUSDTMexc) {
-      let arbitragePair = new ArbitragePair(
-        MarketDataContainer.empty(ewtUSDTMexc),
-        MarketDataContainer.empty(ewtUSDTGateIO),
-        undefined,
-        100,
-        200,
-        0,
-        0,
-        false,
-        false,
-        0.2,
-        200,
-        false,
-        ewtAutoOrder
-      );
+    // if (ewtUSDTGateIO && ewtUSDTMexc) {
+    //   let arbitragePair = new ArbitragePair(
+    //     MarketDataContainer.empty(ewtUSDTMexc),
+    //     MarketDataContainer.empty(ewtUSDTGateIO),
+    //     undefined,
+    //     100,
+    //     200,
+    //     0,
+    //     0,
+    //     false,
+    //     false,
+    //     0.2,
+    //     200,
+    //     false,
+    //     ewtAutoOrder
+    //   );
 
-      arbitragePair.targetAlertAtMarket = 0.6;
+    //   arbitragePair.targetAlertAtMarket = 0.6;
 
-      this.arbitragePairs.push(arbitragePair);
-    }
+    //   this.arbitragePairs.push(arbitragePair);
+    // }
 
-    if (qntUSDTGateIO && qntUSDTMexc) {
+    if (qntUSDTGateIO && qntUSDTBitrue) {
       let arbitragePair = new ArbitragePair(
         MarketDataContainer.empty(qntUSDTGateIO),
-        MarketDataContainer.empty(qntUSDTMexc),
+        MarketDataContainer.empty(qntUSDTBitrue),
         undefined,
         3,
         4,
@@ -351,9 +351,9 @@ export class ArbitrageService {
       this.arbitragePairs.push(arbitragePair);
     }
 
-    if (qntUSDTGateIO && qntUSDTMexc) {
+    if (qntUSDTGateIO && qntUSDTBitrue) {
       let arbitragePair = new ArbitragePair(
-        MarketDataContainer.empty(qntUSDTMexc),
+        MarketDataContainer.empty(qntUSDTBitrue),
         MarketDataContainer.empty(qntUSDTGateIO),
         undefined,
         3,
@@ -371,89 +371,89 @@ export class ArbitrageService {
       this.arbitragePairs.push(arbitragePair);
     }
 
-    if (xrpUSDTGateIO && xrpUSDTMexc) {
-      let arbitragePair = new ArbitragePair(
-        MarketDataContainer.empty(xrpUSDTGateIO),
-        MarketDataContainer.empty(xrpUSDTMexc),
-        undefined,
-        400,
-        2000,
-        0,
-        0,
-        false,
-        false,
-        0.4,
-        200,
-        false,
-        xrpAutoOrder
-      );
-      arbitragePair.targetAlertAtMarket = 0.5;
-      this.arbitragePairs.push(arbitragePair);
-    }
+    // if (xrpUSDTGateIO && xrpUSDTMexc) {
+    //   let arbitragePair = new ArbitragePair(
+    //     MarketDataContainer.empty(xrpUSDTGateIO),
+    //     MarketDataContainer.empty(xrpUSDTMexc),
+    //     undefined,
+    //     400,
+    //     2000,
+    //     0,
+    //     0,
+    //     false,
+    //     false,
+    //     0.4,
+    //     200,
+    //     false,
+    //     xrpAutoOrder
+    //   );
+    //   arbitragePair.targetAlertAtMarket = 0.5;
+    //   this.arbitragePairs.push(arbitragePair);
+    // }
 
-    if (xrpUSDTGateIO && xrpUSDTMexc) {
-      let arbitragePair = new ArbitragePair(
-        MarketDataContainer.empty(xrpUSDTMexc),
-        MarketDataContainer.empty(xrpUSDTGateIO),
-        undefined,
-        400,
-        2000,
-        0,
-        0,
-        false,
-        false,
-        0.4,
-        200,
-        false,
-        xrpAutoOrder
-      );
-      arbitragePair.targetAlertAtMarket = 0.5;
-      this.arbitragePairs.push(arbitragePair);
-    }
+    // if (xrpUSDTGateIO && xrpUSDTMexc) {
+    //   let arbitragePair = new ArbitragePair(
+    //     MarketDataContainer.empty(xrpUSDTMexc),
+    //     MarketDataContainer.empty(xrpUSDTGateIO),
+    //     undefined,
+    //     400,
+    //     2000,
+    //     0,
+    //     0,
+    //     false,
+    //     false,
+    //     0.4,
+    //     200,
+    //     false,
+    //     xrpAutoOrder
+    //   );
+    //   arbitragePair.targetAlertAtMarket = 0.5;
+    //   this.arbitragePairs.push(arbitragePair);
+    // }
 
-    if (hbarUSDTGateIO && hbarUSDTMexc) {
-      let arbitragePair = new ArbitragePair(
-        MarketDataContainer.empty(hbarUSDTGateIO),
-        MarketDataContainer.empty(hbarUSDTMexc),
-        undefined,
-        1000,
-        4000,
-        0,
-        0,
-        true,
-        false,
-        3,
-        200,
-        false,
-        hbarAutoOrder
-      );
+    // if (hbarUSDTGateIO && hbarUSDTMexc) {
+    //   let arbitragePair = new ArbitragePair(
+    //     MarketDataContainer.empty(hbarUSDTGateIO),
+    //     MarketDataContainer.empty(hbarUSDTMexc),
+    //     undefined,
+    //     1000,
+    //     4000,
+    //     0,
+    //     0,
+    //     true,
+    //     false,
+    //     3,
+    //     200,
+    //     false,
+    //     hbarAutoOrder
+    //   );
 
-      arbitragePair.targetAlertAtMarket = 0.5;
+    //   arbitragePair.targetAlertAtMarket = 0.5;
 
-      this.arbitragePairs.push(arbitragePair);
-    }
+    //   this.arbitragePairs.push(arbitragePair);
+    // }
 
-    if (hbarUSDTGateIO && hbarUSDTMexc) {
-      let arbitragePair = new ArbitragePair(
-        MarketDataContainer.empty(hbarUSDTMexc),
-        MarketDataContainer.empty(hbarUSDTGateIO),
-        undefined,
-        1000,
-        4000,
-        0,
-        0,
-        true,
-        false,
-        4,
-        200,
-        false,
-        hbarAutoOrder
-      );
+    // if (hbarUSDTGateIO && hbarUSDTMexc) {
+    //   let arbitragePair = new ArbitragePair(
+    //     MarketDataContainer.empty(hbarUSDTMexc),
+    //     MarketDataContainer.empty(hbarUSDTGateIO),
+    //     undefined,
+    //     1000,
+    //     4000,
+    //     0,
+    //     0,
+    //     true,
+    //     false,
+    //     4,
+    //     200,
+    //     false,
+    //     hbarAutoOrder
+    //   );
 
-      arbitragePair.targetAlertAtMarket = 0.5;
+    //   arbitragePair.targetAlertAtMarket = 0.5;
 
-      this.arbitragePairs.push(arbitragePair);
-    }
+    //   this.arbitragePairs.push(arbitragePair);
+    // }
 
     this.onArbitrageUpdate();
   }
