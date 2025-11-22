@@ -38,14 +38,14 @@ export class TotalCoinBalanceComponent implements OnInit, OnDestroy {
   ];
 
   preferedSymbols: string[] = [
-    'XRP',
+    //'XRP',
     'USDT',
-    'SOLO',
-    'COREUM',
+    //'SOLO',
+    //'COREUM',
     'QNT',
-    'XDC',
-    'EWT',
-    'HBAR',
+    //'XDC',
+    //'EWT',
+    //'HBAR',
   ];
   displayDialog: boolean = false;
   selectedCoin: string = '';

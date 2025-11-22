@@ -139,14 +139,14 @@ export class MexcApiInteractiveService {
   private heartbeatInterval: any;
   private listenerKeyExtensionInterval: any;
   symbols: string[] = [
-    'XDCUSDT',
-    'SOLOUSDT',
-    'COREUMUSDT',
+    // 'XDCUSDT',
+    // 'SOLOUSDT',
+    // 'COREUMUSDT',
     //'XLMUSDT',
     'QNTUSDT',
-    'EWTUSDT',
-    'XRPUSDT',
-    'HBARUSDT',
+    // 'EWTUSDT',
+    // 'XRPUSDT',
+    // 'HBARUSDT',
   ];
 
   constructor(
