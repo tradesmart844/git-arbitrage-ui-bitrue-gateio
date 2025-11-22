@@ -335,13 +335,13 @@ export class ArbitrageService {
         MarketDataContainer.empty(qntUSDTBitrue),
         undefined,
         3,
-        4,
+        26,
         0,
         0,
         true,
         false,
         0.01,
-        200,
+        1000,
         false,
         qntAutoOrder
       );
@@ -357,13 +357,13 @@ export class ArbitrageService {
         MarketDataContainer.empty(qntUSDTGateIO),
         undefined,
         3,
-        4,
+        26,
         0,
         0,
         true,
         false,
         0.01,
-        200,
+        1000,
         false,
         qntAutoOrder
       );
