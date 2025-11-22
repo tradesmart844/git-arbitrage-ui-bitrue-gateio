@@ -318,7 +318,7 @@ export class OrderService {
           break;
         case TradeInterface.BiTrueApi:
           {
-            let response = await this.mexcApiInteractiveService.withdrawCoin(
+            let response = await this.bitrueInteractiveService.withdrawCoin(
               cryptoCoin.coin,
               'TRX',
               'TXk4UxurR4HiA4rFHHBG2XQcxYRuZFKHMs',
