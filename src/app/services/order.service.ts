@@ -293,7 +293,7 @@ export class OrderService {
             let response = await this.gateioApiInteractiveService.withdrawCoin(
               cryptoCoin.coin,
               'TRX',
-              'TTz2GUpjFfrXK3JWkhncPAMEn5LBbEnHBm',
+              'TKHidyeHJsMjW2mqhtCeqD3HBy2FUVTYDZ',
               balanceToWithdraw > 0
                 ? balanceToWithdraw.toString()
                 : balance.free.toString()
@@ -316,11 +316,11 @@ export class OrderService {
             // );
           }
           break;
-        case TradeInterface.MEXCApi:
+        case TradeInterface.BiTrueApi:
           {
             let response = await this.mexcApiInteractiveService.withdrawCoin(
               cryptoCoin.coin,
-              'Tron(TRC20)',
+              'TRX',
               'TXk4UxurR4HiA4rFHHBG2XQcxYRuZFKHMs',
               balanceToWithdraw > 0
                 ? balanceToWithdraw.toString()
@@ -356,148 +356,269 @@ export class OrderService {
   }
 
   async withdrawXDC(cryptoCoin: CryptoCoin, balanceToWithdraw: number = 0) {
-    try {
-      let balance = this.balances.get(cryptoCoin.getUniqueKey());
+    // try {
+    //   let balance = this.balances.get(cryptoCoin.getUniqueKey());
 
-      if (!balance) {
-        return;
-      }
+    //   if (!balance) {
+    //     return;
+    //   }
 
-      if (balance.free <= 0) {
-        return;
-      }
+    //   if (balance.free <= 0) {
+    //     return;
+    //   }
 
-      //Add check for if balance to withdraw is less than free balance
-      if (balance.free < balanceToWithdraw) {
-        return;
-      }
+    //   //Add check for if balance to withdraw is less than free balance
+    //   if (balance.free < balanceToWithdraw) {
+    //     return;
+    //   }
 
-      switch (cryptoCoin.tradeInterface) {
-        case TradeInterface.MEXCApi:
-          {
-            let response = await this.mexcApiInteractiveService.withdrawCoin(
-              cryptoCoin.coin,
-              'XDC',
-              'xdcEED63FA0E9C70D142c2F8c3df94c41Ee794343e5',
-              balanceToWithdraw > 0
-                ? balanceToWithdraw.toString()
-                : balance.free.toString()
-            );
-          }
-          break;
-        case TradeInterface.GateIOApi:
-          {
-            let response = await this.gateioApiInteractiveService.withdrawCoin(
-              cryptoCoin.coin,
-              'XDC',
-              'xdc4338c3aE089bF4d19089C496E27D7FD9C0256a32',
-              balanceToWithdraw > 0
-                ? balanceToWithdraw.toString()
-                : balance.free.toString()
-            );
-          }
-          break;
-      }
-    } catch (error) {
-      console.info(
-        `Unable to withdraw symbol ${cryptoCoin.getUniqueKey()}, reason: ${(<Error>error).message
-        }`
-      );
-    }
+    //   switch (cryptoCoin.tradeInterface) {
+    //     case TradeInterface.MEXCApi:
+    //       {
+    //         let response = await this.mexcApiInteractiveService.withdrawCoin(
+    //           cryptoCoin.coin,
+    //           'XDC',
+    //           'xdcEED63FA0E9C70D142c2F8c3df94c41Ee794343e5',
+    //           balanceToWithdraw > 0
+    //             ? balanceToWithdraw.toString()
+    //             : balance.free.toString()
+    //         );
+    //       }
+    //       break;
+    //     case TradeInterface.GateIOApi:
+    //       {
+    //         let response = await this.gateioApiInteractiveService.withdrawCoin(
+    //           cryptoCoin.coin,
+    //           'XDC',
+    //           'xdc4338c3aE089bF4d19089C496E27D7FD9C0256a32',
+    //           balanceToWithdraw > 0
+    //             ? balanceToWithdraw.toString()
+    //             : balance.free.toString()
+    //         );
+    //       }
+    //       break;
+    //   }
+    // } catch (error) {
+    //   console.info(
+    //     `Unable to withdraw symbol ${cryptoCoin.getUniqueKey()}, reason: ${(<Error>error).message
+    //     }`
+    //   );
+    // }
   }
 
   async withdrawSOLO(cryptoCoin: CryptoCoin, amount = 0) {
-    try {
-      let balance = this.balances.get(cryptoCoin.getUniqueKey());
-      if (!balance) {
-        return;
-      }
-      if (balance.free <= 0) {
-        return;
-      }
-      switch (cryptoCoin.tradeInterface) {
-        case TradeInterface.GateIOApi:
-          {
-            let response = await this.gateioApiInteractiveService.withdrawCoin(
-              cryptoCoin.coin,
-              'XRP',
-              'rs2dgzYeqYqsk8bvkQR5YPyqsXYcA24MP2',
-              amount > 0 ? amount.toString() : balance.free.toString(),
-              '491951'
-            );
-          }
-          break;
-        case TradeInterface.MEXCApi:
-          {
-            let response = await this.mexcApiInteractiveService.withdrawCoin(
-              cryptoCoin.coin,
-              'Ripple(XRP)',
-              'rHcFoo6a9qT5NHiVn1THQRhsEGcxtYCV4d',
-              amount > 0 ? amount : balance.free,
-              '323365690'
-            );
-          }
-          break;
-      }
-    } catch (error) {
-      console.info(
-        `Unable to withdraw symbol ${cryptoCoin.getUniqueKey()}, reason: ${(<Error>error).message
-        }`
-      );
-    }
+    // try {
+    //   let balance = this.balances.get(cryptoCoin.getUniqueKey());
+    //   if (!balance) {
+    //     return;
+    //   }
+    //   if (balance.free <= 0) {
+    //     return;
+    //   }
+    //   switch (cryptoCoin.tradeInterface) {
+    //     case TradeInterface.GateIOApi:
+    //       {
+    //         let response = await this.gateioApiInteractiveService.withdrawCoin(
+    //           cryptoCoin.coin,
+    //           'XRP',
+    //           'rs2dgzYeqYqsk8bvkQR5YPyqsXYcA24MP2',
+    //           amount > 0 ? amount.toString() : balance.free.toString(),
+    //           '491951'
+    //         );
+    //       }
+    //       break;
+    //     case TradeInterface.MEXCApi:
+    //       {
+    //         let response = await this.mexcApiInteractiveService.withdrawCoin(
+    //           cryptoCoin.coin,
+    //           'Ripple(XRP)',
+    //           'rHcFoo6a9qT5NHiVn1THQRhsEGcxtYCV4d',
+    //           amount > 0 ? amount : balance.free,
+    //           '323365690'
+    //         );
+    //       }
+    //       break;
+    //   }
+    // } catch (error) {
+    //   console.info(
+    //     `Unable to withdraw symbol ${cryptoCoin.getUniqueKey()}, reason: ${(<Error>error).message
+    //     }`
+    //   );
+    // }
   }
 
   async withdrawCOREUM(cryptoCoin: CryptoCoin, amount = 0) {
-    try {
-      let balance = this.balances.get(cryptoCoin.getUniqueKey());
-      if (!balance) {
-        return;
-      }
-      if (balance.free <= 0) {
-        return;
-      }
-      switch (cryptoCoin.tradeInterface) {
-        case TradeInterface.GateIOApi:
-          {
-            let response = await this.gateioApiInteractiveService.withdrawCoin(
-              cryptoCoin.coin,
-              'XRP',
-              'rs2dgzYeqYqsk8bvkQR5YPyqsXYcA24MP2',
-              amount > 0 ? amount.toString() : balance.free.toString(),
-              '491951'
-            );
-          }
-          break;
-        case TradeInterface.MEXCApi:
-          {
-            let response = await this.mexcApiInteractiveService.withdrawCoin(
-              cryptoCoin.coin,
-              'Ripple(XRP)',
-              'rHcFoo6a9qT5NHiVn1THQRhsEGcxtYCV4d',
-              amount > 0 ? amount : balance.free,
-              '323365690'
-            );
-          }
-          // {
-          //   let response = await this.mexcApiInteractiveService.withdrawCoin(
-          //     cryptoCoin.coin,
-          //     'COREUM',
-          //     'core10a7t0847dthz3kvs4kagfapu9tk9edkv7v2tcg',
-          //     amount > 0 ? amount : balance.free,
-          //     ''
-          //   );
-          // }
-          break;
-      }
-    } catch (error) {
-      console.info(
-        `Unable to withdraw symbol ${cryptoCoin.getUniqueKey()}, reason: ${(<Error>error).message
-        }`
-      );
-    }
+    // try {
+    //   let balance = this.balances.get(cryptoCoin.getUniqueKey());
+    //   if (!balance) {
+    //     return;
+    //   }
+    //   if (balance.free <= 0) {
+    //     return;
+    //   }
+    //   switch (cryptoCoin.tradeInterface) {
+    //     case TradeInterface.GateIOApi:
+    //       {
+    //         let response = await this.gateioApiInteractiveService.withdrawCoin(
+    //           cryptoCoin.coin,
+    //           'XRP',
+    //           'rs2dgzYeqYqsk8bvkQR5YPyqsXYcA24MP2',
+    //           amount > 0 ? amount.toString() : balance.free.toString(),
+    //           '491951'
+    //         );
+    //       }
+    //       break;
+    //     case TradeInterface.MEXCApi:
+    //       {
+    //         let response = await this.mexcApiInteractiveService.withdrawCoin(
+    //           cryptoCoin.coin,
+    //           'Ripple(XRP)',
+    //           'rHcFoo6a9qT5NHiVn1THQRhsEGcxtYCV4d',
+    //           amount > 0 ? amount : balance.free,
+    //           '323365690'
+    //         );
+    //       }
+    //       // {
+    //       //   let response = await this.mexcApiInteractiveService.withdrawCoin(
+    //       //     cryptoCoin.coin,
+    //       //     'COREUM',
+    //       //     'core10a7t0847dthz3kvs4kagfapu9tk9edkv7v2tcg',
+    //       //     amount > 0 ? amount : balance.free,
+    //       //     ''
+    //       //   );
+    //       // }
+    //       break;
+    //   }
+    // } catch (error) {
+    //   console.info(
+    //     `Unable to withdraw symbol ${cryptoCoin.getUniqueKey()}, reason: ${(<Error>error).message
+    //     }`
+    //   );
+    // }
   }
 
   async withdrawEWT(cryptoCoin: CryptoCoin, amount = 0) {
+    // try {
+    //   let balance = this.balances.get(cryptoCoin.getUniqueKey());
+    //   if (!balance) {
+    //     return;
+    //   }
+    //   if (balance.free <= 0) {
+    //     return;
+    //   }
+    //   switch (cryptoCoin.tradeInterface) {
+    //     case TradeInterface.MEXCApi:
+    //       {
+    //         let response = await this.mexcApiInteractiveService.withdrawCoin(
+    //           cryptoCoin.coin,
+    //           'Energy Web Chain(EWC)',
+    //           '0xEED63FA0E9C70D142c2F8c3df94c41Ee794343e5',
+    //           amount > 0 ? amount : balance.free
+    //         );
+    //       }
+    //       break;
+    //     case TradeInterface.GateIOApi:
+    //       {
+    //         let response = await this.gateioApiInteractiveService.withdrawCoin(
+    //           cryptoCoin.coin,
+    //           'EWT',
+    //           '0x24f86b090949df40a6946ebacc7e8c80d4686936',
+    //           amount > 0 ? amount.toString() : balance.free.toString()
+    //         );
+    //       }
+    //       break;
+    //   }
+    // } catch (error) {
+    //   console.info(
+    //     `Unable to withdraw symbol ${cryptoCoin.getUniqueKey()}, reason: ${(<Error>error).message
+    //     }`
+    //   );
+    // }
+  }
+
+  async withdrawXRP(cryptoCoin: CryptoCoin, amount = 0) {
+    // try {
+    //   let balance = this.balances.get(cryptoCoin.getUniqueKey());
+    //   if (!balance) {
+    //     return;
+    //   }
+    //   if (balance.free <= 0) {
+    //     return;
+    //   }
+    //   switch (cryptoCoin.tradeInterface) {
+    //     case TradeInterface.MEXCApi:
+    //       {
+    //         let response = await this.mexcApiInteractiveService.withdrawCoin(
+    //           cryptoCoin.coin,
+    //           'Ripple(XRP)',
+    //           'rHcFoo6a9qT5NHiVn1THQRhsEGcxtYCV4d',
+    //           amount > 0 ? amount : balance.free,
+    //           '323365690'
+    //         );
+    //       }
+    //       break;
+    //     case TradeInterface.GateIOApi:
+    //       {
+    //         let response = await this.gateioApiInteractiveService.withdrawCoin(
+    //           cryptoCoin.coin,
+    //           'XRP',
+    //           'rs2dgzYeqYqsk8bvkQR5YPyqsXYcA24MP2',
+    //           amount > 0 ? amount.toString() : balance.free.toString(),
+    //           '491951'
+    //         );
+    //       }
+    //       break;
+    //   }
+    // } catch (error) {
+    //   console.info(
+    //     `Unable to withdraw symbol ${cryptoCoin.getUniqueKey()}, reason: ${(<Error>error).message
+    //     }`
+    //   );
+    // }
+  }
+
+  async withdrawHBAR(cryptoCoin: CryptoCoin, amount = 0) {
+    // try {
+    //   let balance = this.balances.get(cryptoCoin.getUniqueKey());
+    //   if (!balance) {
+    //     return;
+    //   }
+    //   if (balance.free <= 0) {
+    //     return;
+    //   }
+    //   switch (cryptoCoin.tradeInterface) {
+    //     case TradeInterface.MEXCApi:
+    //       {
+    //         let response = await this.mexcApiInteractiveService.withdrawCoin(
+    //           cryptoCoin.coin,
+    //           'Hedera(HBAR)',
+    //           '0.0.29000',
+    //           amount > 0 ? amount : balance.free,
+    //           '013462b307406121'
+    //         );
+    //       }
+    //       break;
+    //     case TradeInterface.GateIOApi:
+    //       {
+    //         let response = await this.gateioApiInteractiveService.withdrawCoin(
+    //           cryptoCoin.coin,
+    //           'HBAR',
+    //           '0.0.858938',
+    //           amount > 0 ? amount.toString() : balance.free.toString(),
+    //           '149421'
+    //         );
+    //       }
+    //       break;
+    //   }
+    // } catch (error) {
+    //   console.info(
+    //     `Unable to withdraw symbol ${cryptoCoin.getUniqueKey()}, reason: ${(<Error>error).message
+    //     }`
+    //   );
+    // }
+  }
+
+  async withdrawQNT(cryptoCoin: CryptoCoin, amount = 0) {
     try {
       let balance = this.balances.get(cryptoCoin.getUniqueKey());
       if (!balance) {
@@ -507,11 +628,11 @@ export class OrderService {
         return;
       }
       switch (cryptoCoin.tradeInterface) {
-        case TradeInterface.MEXCApi:
+        case TradeInterface.BiTrueApi:
           {
             let response = await this.mexcApiInteractiveService.withdrawCoin(
               cryptoCoin.coin,
-              'Energy Web Chain(EWC)',
+              'ETH',
               '0xEED63FA0E9C70D142c2F8c3df94c41Ee794343e5',
               amount > 0 ? amount : balance.free
             );
@@ -521,91 +642,9 @@ export class OrderService {
           {
             let response = await this.gateioApiInteractiveService.withdrawCoin(
               cryptoCoin.coin,
-              'EWT',
-              '0x24f86b090949df40a6946ebacc7e8c80d4686936',
+              'ETH',
+              '0x5bcc1eb300d50578ec5c8fa882ea7b941358d7d0',
               amount > 0 ? amount.toString() : balance.free.toString()
-            );
-          }
-          break;
-      }
-    } catch (error) {
-      console.info(
-        `Unable to withdraw symbol ${cryptoCoin.getUniqueKey()}, reason: ${(<Error>error).message
-        }`
-      );
-    }
-  }
-
-  async withdrawXRP(cryptoCoin: CryptoCoin, amount = 0) {
-    try {
-      let balance = this.balances.get(cryptoCoin.getUniqueKey());
-      if (!balance) {
-        return;
-      }
-      if (balance.free <= 0) {
-        return;
-      }
-      switch (cryptoCoin.tradeInterface) {
-        case TradeInterface.MEXCApi:
-          {
-            let response = await this.mexcApiInteractiveService.withdrawCoin(
-              cryptoCoin.coin,
-              'Ripple(XRP)',
-              'rHcFoo6a9qT5NHiVn1THQRhsEGcxtYCV4d',
-              amount > 0 ? amount : balance.free,
-              '323365690'
-            );
-          }
-          break;
-        case TradeInterface.GateIOApi:
-          {
-            let response = await this.gateioApiInteractiveService.withdrawCoin(
-              cryptoCoin.coin,
-              'XRP',
-              'rs2dgzYeqYqsk8bvkQR5YPyqsXYcA24MP2',
-              amount > 0 ? amount.toString() : balance.free.toString(),
-              '491951'
-            );
-          }
-          break;
-      }
-    } catch (error) {
-      console.info(
-        `Unable to withdraw symbol ${cryptoCoin.getUniqueKey()}, reason: ${(<Error>error).message
-        }`
-      );
-    }
-  }
-
-  async withdrawHBAR(cryptoCoin: CryptoCoin, amount = 0) {
-    try {
-      let balance = this.balances.get(cryptoCoin.getUniqueKey());
-      if (!balance) {
-        return;
-      }
-      if (balance.free <= 0) {
-        return;
-      }
-      switch (cryptoCoin.tradeInterface) {
-        case TradeInterface.MEXCApi:
-          {
-            let response = await this.mexcApiInteractiveService.withdrawCoin(
-              cryptoCoin.coin,
-              'Hedera(HBAR)',
-              '0.0.29000',
-              amount > 0 ? amount : balance.free,
-              '013462b307406121'
-            );
-          }
-          break;
-        case TradeInterface.GateIOApi:
-          {
-            let response = await this.gateioApiInteractiveService.withdrawCoin(
-              cryptoCoin.coin,
-              'HBAR',
-              '0.0.858938',
-              amount > 0 ? amount.toString() : balance.free.toString(),
-              '149421'
             );
           }
           break;
