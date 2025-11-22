@@ -24,7 +24,7 @@ export class WithdrawCoinComponent implements OnInit {
   constructor(
     private orderService: OrderService,
     public withdrawCoinModalService: WithdraCoinModalService
-  ) {}
+  ) { }
 
   ngOnInit(): void {
     if (this.balance?.cryptoCoin) {
@@ -95,10 +95,15 @@ export class WithdrawCoinComponent implements OnInit {
           this.amount
         );
         break;
+      case 'QNT':
+        await this.orderService.withdrawQNT(
+          this.balance.cryptoCoin,
+          this.amount
+        );
+        break;
       default:
         alert(
-          `The ${this.balance.cryptoCoin.coin} ${
-            TradeInterface[this.balance.cryptoCoin.tradeInterface]
+          `The ${this.balance.cryptoCoin.coin} ${TradeInterface[this.balance.cryptoCoin.tradeInterface]
           } coin is not configured for withdraw.`
         );
         break;
