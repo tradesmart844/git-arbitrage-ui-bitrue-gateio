@@ -28,6 +28,7 @@ export class ArbitragePair {
   magicNumber: string = '';
   placeOrderViaWeb = false;
   placeAutoBuyOrder = false;
+  sellQuantityMultiplier: number;
   isBeingProcessed = false;
   createdTime: number = Date.now();
 
@@ -44,7 +45,8 @@ export class ArbitragePair {
     extraBuyQuantity: number = 0,
     calculateSellQuantityValue: number = 0,
     placeOrderViaWeb = false,
-    placeAutoBuyOrder = false
+    placeAutoBuyOrder = false,
+    sellQuantityMultiplier = 1
   ) {
     this.sellMarketDataContainer = sellMarketDataContainer;
     this.buyMarketDataContainer = buyMarketDataContainer;
@@ -59,6 +61,7 @@ export class ArbitragePair {
     this.calculateSellQuantityValue = calculateSellQuantityValue;
     this.placeOrderViaWeb = placeOrderViaWeb;
     this.placeAutoBuyOrder = placeAutoBuyOrder;
+    this.sellQuantityMultiplier = sellQuantityMultiplier;
   }
 
   calculate() {
@@ -194,22 +197,22 @@ export class ArbitragePair {
 
       //Calculate total sellQuantity based on calculateSellQuantityValue value if it is greater than 0 against sellMarketPrice
       if (this.calculateSellQuantityValue > 0) {
-        this.calculateSellQuantityValue / this.sellMarketPrice;
-        this.sellQuantity =
-          this.calculateSellQuantityValue / this.sellMarketPrice;
+        this.sellQuantity = this.formatQuantity(
+          this.calculateSellQuantityValue / this.sellMarketPrice,
+          this.sellMarketDataContainer.symbol.lotSize
+        );
+
+        const quantityForLiquidityCheck = this.formatQuantity(
+          (this.calculateSellQuantityValue * this.sellQuantityMultiplier) / this.sellMarketPrice,
+          this.sellMarketDataContainer.symbol.lotSize
+        );
+
         //Recalculate sellMarketPrice based on new sellQuantity
         this.sellMarketPrice =
           this.sellMarketDataContainer.marketDepths.getBestPriceByQuantity(
             TransactionType.Sell,
-            this.sellQuantity
+            quantityForLiquidityCheck
           );
-
-        //Format sellQuantity to decimal places based on lot size decimal places
-        //Example 0.1 lot size 1 decimal place
-        this.sellQuantity = this.formatQuantity(
-          this.sellQuantity,
-          this.sellMarketDataContainer.symbol.lotSize
-        );
       }
 
       this.buyMarketPrice =

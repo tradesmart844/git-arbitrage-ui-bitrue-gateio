@@ -167,7 +167,8 @@ export class ArbitrageService {
         9,
         700,
         false,
-        xdcAutoOrder
+        xdcAutoOrder,
+        2
       );
 
       arbitragePair.targetAlertAtMarket = 0.5;
@@ -189,7 +190,8 @@ export class ArbitrageService {
         12,
         700,
         false,
-        xdcAutoOrder
+        xdcAutoOrder,
+        2
       );
 
       arbitragePair.targetAlertAtMarket = 0.5
@@ -343,7 +345,8 @@ export class ArbitrageService {
         0.03,
         700,
         false,
-        qntAutoOrder
+        qntAutoOrder,
+        2
       );
 
       arbitragePair.targetAlertAtMarket = 0.7;
@@ -365,7 +368,8 @@ export class ArbitrageService {
         0.03,
         700,
         false,
-        qntAutoOrder
+        qntAutoOrder,
+        2
       );
       arbitragePair.targetAlertAtMarket = 0.7;
       this.arbitragePairs.push(arbitragePair);
