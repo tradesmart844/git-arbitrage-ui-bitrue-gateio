@@ -43,7 +43,7 @@ export class TotalCoinBalanceComponent implements OnInit, OnDestroy {
     //'SOLO',
     //'COREUM',
     'QNT',
-    //'XDC',
+    'XDC',
     //'EWT',
     //'HBAR',
   ];

@@ -143,8 +143,8 @@ export class GateIOApiInteractiveService {
   private pingPongIntervalMarketDataSocket: any;
   private pingPongIntervalInteractiveSocket: any;
   symbols: string[] = [
-    // 'XDCUSDT',
-    // 'SOLOUSDT',
+    'XDCUSDT',
+    //'SOLOUSDT',
     // 'COREUMUSDT',
     //'XLMUSDT',
     'QNTUSDT',

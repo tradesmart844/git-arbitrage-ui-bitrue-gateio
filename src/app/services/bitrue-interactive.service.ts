@@ -85,7 +85,7 @@ export class BitrueInteractiveService implements IInteractiveEngine {
     // 'XCOREUSDT',
     'QNTUSDT',
     // 'QNTXRP',
-    //'XDCUSDT',
+    'XDCUSDT',
     //'XDCXRP',
     //'XLMUSDT',
     // 'XLMXRP',

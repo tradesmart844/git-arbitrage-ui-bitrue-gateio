@@ -42,7 +42,7 @@ export class BalanceComponent implements OnInit, OnDestroy {
     //'COREUM',
     'QNT',
     //'XLM',
-    //'XDC',
+    'XDC',
     //'EWT',
     //'HBAR',
   ];
