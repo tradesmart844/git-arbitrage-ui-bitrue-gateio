@@ -143,8 +143,8 @@ export class GateIOApiInteractiveService {
   private pingPongIntervalMarketDataSocket: any;
   private pingPongIntervalInteractiveSocket: any;
   symbols: string[] = [
-    // 'XDCUSDT',
-    // 'SOLOUSDT',
+    'XDCUSDT',
+    //'SOLOUSDT',
     // 'COREUMUSDT',
     //'XLMUSDT',
     'QNTUSDT',
@@ -177,6 +177,7 @@ export class GateIOApiInteractiveService {
   async init() {
     await this.getSymbols();
     await this.getBalance();
+    await this.loanRatio();
     // //this.xrpUSDTWindow = window.open('https://www.mexc.com/exchange/XRP_USDT');
 
     //await this.getAllOpenOrders();
@@ -812,6 +813,25 @@ export class GateIOApiInteractiveService {
     }
   }
 
+  async loanRatio() {
+    try {
+      let loanRatioResponse = await this.http_request(
+        '/api/v4/loan/collateral/ltv',
+        HTTPMethods.GET,
+        {
+          collateral_currency: 'XRP',
+          borrow_currency: 'QNT'
+        },
+        null,
+        'loanRatio'
+      );
+      console.info(`Loan Ratio Response: ${JSON.stringify(loanRatioResponse)}`);
+    } catch (error: any) {
+      console.error(`[${TradeInterface[this.tradeInterface]}] Error fetching loan ratio:`, error);
+    }
+
+  }
+
   async createListenerKey() {
     try {
       let listenerKeyResponse = await this.http_request(
@@ -926,9 +946,6 @@ export class GateIOApiInteractiveService {
             );
           }
         }
-
-        //this.startHeartbeat();
-        //this.startListenerKeyExtension();
       };
 
       this.interactiveSocket.onclose = async () => {
@@ -990,47 +1007,6 @@ export class GateIOApiInteractiveService {
                 break;
               case 'spot.orders':
                 {
-                  // let spotOrderSample = {
-                  //   "time": 1694655225,
-                  //   "time_ms": 1694655225315,
-                  //   "channel": "spot.orders",
-                  //   "event": "update",
-                  //   "result": [
-                  //     {
-                  //       "id": "399123456",
-                  //       "text": "t-testtext",
-                  //       "create_time": "1694655225",
-                  //       "update_time": "1694655225",
-                  //       "currency_pair": "BTC_USDT",
-                  //       "type": "limit",
-                  //       "account": "spot",
-                  //       "side": "sell",
-                  //       "amount": "0.0001",
-                  //       "price": "26253.3",
-                  //       "time_in_force": "gtc",
-                  //       "left": "0.0001",
-                  //       "filled_total": "0",
-                  //       "filled_amount": "812.8",
-                  //       "avg_deal_price": "0",
-                  //       "fee": "0",
-                  //       "fee_currency": "USDT",
-                  //       "point_fee": "0",
-                  //       "gt_fee": "0",
-                  //       "rebated_fee": "0",
-                  //       "rebated_fee_currency": "USDT",
-                  //       "create_time_ms": "1694655225315",
-                  //       "update_time_ms": "1694655225315",
-                  //       "user": 3497082,
-                  //       "event": "put",
-                  //       "stp_id": 0,
-                  //       "stp_act": "-",
-                  //       "finish_as": "open",
-                  //       "biz_info": "-",
-                  //       "amend_text": "-"
-                  //     }
-                  //   ]
-                  // }
-
                   for (let index = 0; index < messageData.result.length; index++) {
                     let result = messageData.result[index];
                     let symbol = this.symbolManagerService.getSymbol(this.tradeInterface, this.segment, result.currency_pair.replace('_', ''));
@@ -1072,87 +1048,6 @@ export class GateIOApiInteractiveService {
             }
           }
         }
-        // {
-        //   try {
-        //     let data = JSON.parse(message.data);
-
-        //     // Handle PONG response
-        //     if (data.result === 'pong') {
-        //       console.info(`${TradeInterface[this.tradeInterface]} interactive socket pong received.`);
-        //     }
-
-        //     switch (data.c) {
-        //       case 'spot@private.account.v3.api':
-        //         {
-        //           let cryptoCoin = this.symbolManagerService.getCryptoCoin(
-        //             this.tradeInterface,
-        //             this.segment,
-        //             data.d.a
-        //           );
-
-        //           if (cryptoCoin) {
-        //             let accountBalance = new AccountBalance(
-        //               cryptoCoin,
-        //               parseFloat(data.d.f),
-        //               parseFloat(data.d.l)
-        //             );
-
-        //             // console.info(
-        //             //   `${TradeInterface[this.tradeInterface]} Balance Update Event: ${JSON.stringify(accountBalance)}`
-        //             // );
-
-        //             this.appService.appEvents.emit({
-        //               MessageType: MessageTypes.BALANCE_UPDATE_EVENT,
-        //               Data: accountBalance,
-        //             });
-        //           }
-        //         }
-        //         break;
-        //       case 'spot@private.orders.v3.api':
-        //         {
-        //           let symbol = this.symbolManagerService.getSymbol(
-        //             this.tradeInterface,
-        //             this.segment,
-        //             data.s
-        //           );
-
-        //           if (symbol) {
-        //             let order = new Order(
-        //               symbol,
-        //               data.d.i,
-        //               this.convertToTransactionType(data.d.S),
-        //               this.convertToOrderType(data.d.o),
-        //               parseFloat(data.d.v),
-        //               parseFloat(data.d.p),
-        //               parseFloat(data.d.v) - parseFloat(data.d.V),
-        //               parseFloat(data.d.p),
-        //               data.d.O,
-        //               data.d.O,
-        //               this.convertToOrderStatus(data.d.s),
-        //               0,
-        //               data.d.c
-        //             );
-
-        //             this.appService.appEvents.emit({
-        //               MessageType: MessageTypes.ORDER_UPDATE_EVENT,
-        //               Data: order,
-        //             });
-
-        //             this.appService.appEvents.emit({
-        //               MessageType: MessageTypes.ORDER_PARTIAL_FILL_EVENT,
-        //               Data: order,
-        //             });
-        //           }
-        //         }
-        //         break;
-        //     }
-        //   } catch (error: any) {
-        //     console.error(
-        //       'Error in interactive socket for message update -> ' +
-        //       error.toString()
-        //     );
-        //   }
-        // }
       };
     }
   }
@@ -1307,145 +1202,6 @@ export class GateIOApiInteractiveService {
           }`
         );
       }
-
-
-      // if (message.data instanceof Blob || message.data instanceof ArrayBuffer) {
-      //   try {
-      //     const buffer =
-      //       message.data instanceof Blob
-      //         ? await message.data.arrayBuffer()
-      //         : message.data;
-
-      //     let dataToDecode: Uint8Array = new Uint8Array(buffer);
-
-      //     // 1. Decode the outer message with the correct schema
-      //     const wrapper: any = StreamWrapper.decode(dataToDecode);
-
-      //     // 2. Check if the inner data payload exists
-      //     if (!wrapper.data || wrapper.data.length === 0) {
-      //       console.warn('Received a message without a data payload, ignoring.');
-      //       return;
-      //     }
-
-      //     // 3. Decode the inner 'data' bytes to get the depth information
-      //     const depthData: any = PublicLimitDepthsData.decode(wrapper.data);
-
-      //     let symbol = this.symbolManagerService.getSymbol(
-      //       this.tradeInterface,
-      //       this.segment,
-      //       wrapper.symbol.toUpperCase()
-      //     );
-
-      //     if (symbol) {
-      //       let marketDepths = new MarketDepths(
-      //         wrapper.symbol.toUpperCase(),
-      //         this.segment,
-      //         this.tradeInterface,
-      //         [],
-      //         []
-      //       );
-
-      //       if (depthData.asks) {
-      //         for (let index = 0; index < depthData.asks.length; index++) {
-      //           let ask = depthData.asks[index];
-      //           let marketDepthInfo = new MarketDepthInfo(
-      //             parseFloat(ask.price),
-      //             parseFloat(ask.quantity),
-      //             0
-      //           );
-      //           marketDepths.asks.push(marketDepthInfo);
-      //         }
-      //       }
-
-      //       if (depthData.bids) {
-      //         for (let index = 0; index < depthData.bids.length; index++) {
-      //           let bid = depthData.bids[index];
-      //           let marketDepthInfo = new MarketDepthInfo(
-      //             parseFloat(bid.price),
-      //             parseFloat(bid.quantity),
-      //             0
-      //           );
-      //           marketDepths.bids.push(marketDepthInfo);
-      //         }
-      //       }
-
-      //       this.appService.appEvents.emit({
-      //         MessageType: MessageTypes.MARKET_DEPTH_MESSAGE_EVENT,
-      //         Data: marketDepths,
-      //       });
-      //     }
-      //   } catch (error: any) {
-      //     console.error(
-      //       `${TradeInterface[this.tradeInterface]
-      //       } ${symbol} marketData socket binary message error => ${(<Error>error).message
-      //       }`
-      //     );
-      //   }
-      // } else {
-      //   try {
-      //     const data = JSON.parse(message.data);
-
-      //     if (data.ping) {
-      //       marketDataSocket.send(JSON.stringify({ pong: data.ping }));
-      //       return;
-      //     }
-
-      //     if (data.c && data.c.startsWith('spot@public.limit.depth.v3.api@')) {
-      //       let symbol = this.symbolManagerService.getSymbol(
-      //         this.tradeInterface,
-      //         this.segment,
-      //         data.s.toUpperCase()
-      //       );
-
-      //       if (symbol) {
-      //         let marketDepths = new MarketDepths(
-      //           data.s.toUpperCase(),
-      //           this.segment,
-      //           this.tradeInterface,
-      //           [],
-      //           []
-      //         );
-
-      //         for (let index = 0; index < data.d.asks.length; index++) {
-      //           let ask = data.d.asks[index];
-      //           let marketDepthInfo = new MarketDepthInfo(
-      //             parseFloat(ask.p),
-      //             parseFloat(ask.v),
-      //             0
-      //           );
-      //           marketDepths.asks.push(marketDepthInfo);
-      //         }
-
-      //         for (let index = 0; index < data.d.bids.length; index++) {
-      //           let bid = data.d.bids[index];
-      //           let marketDepthInfo = new MarketDepthInfo(
-      //             parseFloat(bid.p),
-      //             parseFloat(bid.v),
-      //             0
-      //           );
-      //           marketDepths.bids.push(marketDepthInfo);
-      //         }
-
-      //         this.appService.appEvents.emit({
-      //           MessageType: MessageTypes.MARKET_DEPTH_MESSAGE_EVENT,
-      //           Data: marketDepths,
-      //         });
-      //       }
-      //     } else {
-      //       console.info(
-      //         `${TradeInterface[this.tradeInterface]
-      //         } marketData socket text message:`,
-      //         data
-      //       );
-      //     }
-      //   } catch (error) {
-      //     console.error(
-      //       `${TradeInterface[this.tradeInterface]
-      //       } ${symbol} marketData socket text message error => ${(<Error>error).message
-      //       }`
-      //     );
-      //   }
-      // }
     };
 
     marketDataSocket.onerror = async (data) => {

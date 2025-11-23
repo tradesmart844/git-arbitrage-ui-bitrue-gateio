@@ -61,17 +61,17 @@ export class ArbitrageService {
   }
 
   async onAppReady(message: string) {
-    // let xdcUSDTGateIO = this.symbolManagerService.getSymbol(
-    //   TradeInterface.GateIOApi,
-    //   Segment.GateIO,
-    //   'XDCUSDT'
-    // );
+    let xdcUSDTGateIO = this.symbolManagerService.getSymbol(
+      TradeInterface.GateIOApi,
+      Segment.GateIO,
+      'XDCUSDT'
+    );
 
-    // let xdcUSDTMexc = this.symbolManagerService.getSymbol(
-    //   TradeInterface.MEXCApi,
-    //   Segment.MEXC,
-    //   'XDCUSDT'
-    // );
+    let xdcUSDTBitrue = this.symbolManagerService.getSymbol(
+      TradeInterface.BiTrueApi,
+      Segment.BiTrue,
+      'XDCUSDT'
+    );
 
     // let soloUSDTGateIO = this.symbolManagerService.getSymbol(
     //   TradeInterface.GateIOApi,
@@ -79,9 +79,9 @@ export class ArbitrageService {
     //   'SOLOUSDT'
     // );
 
-    // let soloUSDTMexc = this.symbolManagerService.getSymbol(
-    //   TradeInterface.MEXCApi,
-    //   Segment.MEXC,
+    // let soloUSDTBitrue = this.symbolManagerService.getSymbol(
+    //   TradeInterface.BiTrueApi,
+    //   Segment.BiTrue,
     //   'SOLOUSDT'
     // );
 
@@ -145,71 +145,73 @@ export class ArbitrageService {
     //   'HBARUSDT'
     // );
 
-    // let xdcAutoOrder = true;
-    // let soloAutoOrder = true;
+    let xdcAutoOrder = false;
+    let soloAutoOrder = false;
     // let coreumAutoOrder = true;
     // let ewtAutoOrder = false;
     let qntAutoOrder = false;
     // let xrpAutoOrder = false;
     // let hbarAutoOrder = true;
 
-    // if (xdcUSDTGateIO && xdcUSDTMexc) {
-    //   let arbitragePair = new ArbitragePair(
-    //     MarketDataContainer.empty(xdcUSDTGateIO),
-    //     MarketDataContainer.empty(xdcUSDTMexc),
-    //     undefined,
-    //     5000,
-    //     4000,
-    //     0,
-    //     0,
-    //     true,
-    //     false,
-    //     3,
-    //     200,
-    //     false,
-    //     xdcAutoOrder
-    //   );
+    if (xdcUSDTGateIO && xdcUSDTBitrue) {
+      let arbitragePair = new ArbitragePair(
+        MarketDataContainer.empty(xdcUSDTGateIO),
+        MarketDataContainer.empty(xdcUSDTBitrue),
+        undefined,
+        13000,
+        26000,
+        0,
+        0,
+        true,
+        false,
+        9,
+        700,
+        false,
+        xdcAutoOrder,
+        2
+      );
 
-    //   arbitragePair.targetAlertAtMarket = 0.5;
+      arbitragePair.targetAlertAtMarket = 0.5;
 
-    //   this.arbitragePairs.push(arbitragePair);
-    // }
+      this.arbitragePairs.push(arbitragePair);
+    }
 
-    // if (xdcUSDTGateIO && xdcUSDTMexc) {
-    //   let arbitragePair = new ArbitragePair(
-    //     MarketDataContainer.empty(xdcUSDTMexc),
-    //     MarketDataContainer.empty(xdcUSDTGateIO),
-    //     undefined,
-    //     5000,
-    //     4000,
-    //     0,
-    //     0,
-    //     true,
-    //     false,
-    //     4,
-    //     200,
-    //     false,
-    //     xdcAutoOrder
-    //   );
+    if (xdcUSDTGateIO && xdcUSDTBitrue) {
+      let arbitragePair = new ArbitragePair(
+        MarketDataContainer.empty(xdcUSDTBitrue),
+        MarketDataContainer.empty(xdcUSDTGateIO),
+        undefined,
+        13000,
+        26000,
+        0,
+        0,
+        true,
+        false,
+        12,
+        700,
+        false,
+        xdcAutoOrder,
+        2
+      );
 
-    //   arbitragePair.targetAlertAtMarket = 0.5
+      arbitragePair.targetAlertAtMarket = 0.5
 
-    //   this.arbitragePairs.push(arbitragePair);
-    // }
+      this.arbitragePairs.push(arbitragePair);
+    }
 
-    // if (soloUSDTGateIO && soloUSDTMexc) {
+    // if (soloUSDTGateIO && soloUSDTBitrue) {
     //   let arbitragePair = new ArbitragePair(
     //     MarketDataContainer.empty(soloUSDTGateIO),
-    //     MarketDataContainer.empty(soloUSDTMexc),
+    //     MarketDataContainer.empty(soloUSDTBitrue),
     //     undefined,
-    //     500,
-    //     1000,
+    //     2000,
+    //     4000,
     //     0,
     //     0,
     //     true,
     //     false,
-    //     2,
-    //     200,
+    //     6,
+    //     450,
     //     false,
     //     soloAutoOrder
     //   );
@@ -219,19 +221,19 @@ export class ArbitrageService {
     //   this.arbitragePairs.push(arbitragePair);
     // }
 
-    // if (soloUSDTGateIO && soloUSDTMexc) {
+    // if (soloUSDTGateIO && soloUSDTBitrue) {
     //   let arbitragePair = new ArbitragePair(
-    //     MarketDataContainer.empty(soloUSDTMexc),
+    //     MarketDataContainer.empty(soloUSDTBitrue),
     //     MarketDataContainer.empty(soloUSDTGateIO),
     //     undefined,
-    //     500,
-    //     1000,
+    //     2000,
+    //     4000,
     //     0,
     //     0,
     //     true,
     //     false,
-    //     2,
-    //     200,
+    //     6,
+    //     450,
     //     false,
     //     soloAutoOrder
     //   );
@@ -335,15 +337,16 @@ export class ArbitrageService {
         MarketDataContainer.empty(qntUSDTBitrue),
         undefined,
         3,
-        4,
+        20,
         0,
         0,
         true,
         false,
-        0.01,
-        200,
+        0.03,
+        700,
         false,
-        qntAutoOrder
+        qntAutoOrder,
+        2
       );
 
       arbitragePair.targetAlertAtMarket = 0.7;
@@ -357,15 +360,16 @@ export class ArbitrageService {
         MarketDataContainer.empty(qntUSDTGateIO),
         undefined,
         3,
-        4,
+        20,
         0,
         0,
         true,
         false,
-        0.01,
-        200,
+        0.03,
+        700,
         false,
-        qntAutoOrder
+        qntAutoOrder,
+        2
       );
       arbitragePair.targetAlertAtMarket = 0.7;
       this.arbitragePairs.push(arbitragePair);
